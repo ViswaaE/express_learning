@@ -61,4 +61,25 @@ app.listen(PORT, () => {
 
 
 
-//practice question
+// Mock user data (like a fake database)
+const user = {
+  username: "viswa",
+  password: "12345",
+};
+
+// POST request for login
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+
+  // Simple mock validation
+  if (username === user.username && password === user.password) {
+    res.json({
+      message: "Login successful",
+      token: "abc123xyz",
+    });
+  } else {
+    res.status(401).json({
+      message: "Invalid username or password",
+    });
+  }
+});
